@@ -1,37 +1,27 @@
-class Employee
-{
-	int empId;
-	String empName;
-	double sal;
-	static String orgName = "BirlaGroup";
-	
-	public double getSal(){
-	
-		return sal;
-	}
-	
-	public int getEmpId(){
-		
-		return empId;
-	}
-	
-	public static double getROI(){
-		
-		return 8.5;
-	}
-	
-	public static void main(String args[])
-	{
-		double roi = getROI();
-		System.out.println("roi per year is "+roi);
-		Employee obj = new Employee();
-		System.out.println(obj.empId);
-		double sal = obj.getSal();
-		System.out.println(sal);
-	}
-	
-	
 
-
+public class Employee {
+	
+	
+	private int empId;
+	private String empName;
+	private double sal;
+	
+	public Employee(int a, String b, double c) {
+		super();
+		this.empId = a;
+		this.empName = b;
+		this.sal = c;
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		
+		Employee obj1 = new Employee(101, "Miller", 50000);
+		System.out.println(obj1.empId+" "+obj1.empName+" "+obj1.sal);
+	}
+	
+	
+	
 
 }
