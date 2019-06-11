@@ -1,6 +1,6 @@
 package pack1;
 
-public class Employee {
+public class Employee implements Comparable<Employee>{
 
 	private int empId;
 	private String empName;
@@ -40,6 +40,22 @@ public class Employee {
 
 	public void setSal(double sal) {
 		this.sal = sal;
+	}
+
+	@Override
+	public int compareTo(Employee o) {
+		// TODO Auto-generated method stub
+		/*
+		 * String empName2 = this.getEmpName(); String empName3 = o.getEmpName(); return
+		 * empName2.compareTo(empName3);
+		 * 
+		 */
+		
+		Integer empId2 = this.getEmpId();
+		Integer empId3 = o.getEmpId();
+		
+		//return empId2.compareTo(empId3);
+		return empId2<empId3?1:empId2>empId3?-1:0;
 	}
 
 }
