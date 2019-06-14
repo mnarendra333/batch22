@@ -17,7 +17,7 @@ public class MoviesDemo {
 		
 		try {
 			
-			BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\sapuser\\Desktop\\movData.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\sapuser\\Desktop\\movCol.txt"));
 			String movieData = null;
 			
 			List<Movie> movieList = new ArrayList<Movie>();
