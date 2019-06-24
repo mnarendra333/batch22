@@ -1,0 +1,532 @@
+create table batch(id number(10), name varchar2(20),stu_count number(10));
+
+Table created.
+
+SQL> drop table batch
+  2  ;
+
+Table dropped.
+
+SQL> create table batch(id number(10) primary key, name varchar2(20),stu_count number(10));
+
+Table created.
+
+SQL> desc batch
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(20)
+ STU_COUNT                                          NUMBER(10)
+
+SQL>
+SQL>
+SQL>
+SQL> alter table batch add batch_type varchar2(20);
+
+Table altered.
+
+SQL> desc batch
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(20)
+ STU_COUNT                                          NUMBER(10)
+ BATCH_TYPE                                         VARCHAR2(20)
+
+SQL> alter table batch modify batch_type varchar2(10);
+
+Table altered.
+
+SQL> desc batch
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(20)
+ STU_COUNT                                          NUMBER(10)
+ BATCH_TYPE                                         VARCHAR2(10)
+
+SQL> alter table batch rename column batch_type to b_type;
+
+Table altered.
+
+SQL> desc batch
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(20)
+ STU_COUNT                                          NUMBER(10)
+ B_TYPE                                             VARCHAR2(10)
+
+SQL> alter table batch drop column b_type;
+
+Table altered.
+
+SQL> desc batch
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(20)
+ STU_COUNT                                          NUMBER(10)
+
+SQL> alter table batch add batch_type varchar2(20);
+
+Table altered.
+
+SQL> desc batch
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(20)
+ STU_COUNT                                          NUMBER(10)
+ BATCH_TYPE                                         VARCHAR2(20)
+
+SQL> drop table batch;
+
+Table dropped.
+
+SQL> desc batch
+ERROR:
+ORA-04043: object batch does not exist
+
+
+SQL> create table batch(id number(10) primary key, name varchar2(20),stu_count number(10));
+
+Table created.
+
+SQL> alter table batch add batch_type varchar2(20);
+
+Table altered.
+
+SQL> desc batch
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(20)
+ STU_COUNT                                          NUMBER(10)
+ BATCH_TYPE                                         VARCHAR2(20)
+
+SQL> insert into batch values(1,'batch_1',10,'regular');
+
+1 row created.
+
+SQL> insert into batch values(2,'batch_2',20,'regular');
+
+1 row created.
+
+SQL> insert into batch values(3,'batch_3',40,'weekend');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL>
+SQL>
+SQL>
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+
+SQL>
+SQL>
+SQL> delete from batch;
+
+3 rows deleted.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+
+SQL> truncate table batch;
+
+Table truncated.
+
+SQL> select * from batch;
+
+no rows selected
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from batch;
+
+no rows selected
+
+SQL> rename batch to batch_info;
+
+Table renamed.
+
+SQL> select * from batch;
+select * from batch
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> desc batch;
+ERROR:
+ORA-04043: object batch does not exist
+
+
+SQL> rename batch_info to batch;
+
+Table renamed.
+
+SQL> select * from batch;
+
+no rows selected
+
+SQL> select * from batch;
+
+no rows selected
+
+SQL> insert into batch values(1,'batch_1',10,'regular');
+
+1 row created.
+
+SQL> insert into batch values(2,'batch_2',20,'regular');
+
+1 row created.
+
+SQL> insert into batch values(3,'batch_3',40,'weekend');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+
+SQL> insert into batch(name,stu_count,batch_type) values('batch_22',10,'regular');
+insert into batch(name,stu_count,batch_type) values('batch_22',10,'regular')
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SYSTEM"."BATCH"."ID")
+
+
+SQL> insert into batch(id,stu_count,batch_type) values(4,10,'regular');
+
+1 row created.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+         4                              10 regular
+
+SQL> insert into batch(&id,'&name',&stu_count,'&batch_type')
+  2  ;
+Enter value for id: 5
+Enter value for name: batch_5
+Enter value for stu_count: 15
+Enter value for batch_type: regular
+old   1: insert into batch(&id,'&name',&stu_count,'&batch_type')
+new   1: insert into batch(5,'batch_5 ',15,'regular')
+insert into batch(5,'batch_5 ',15,'regular')
+                  *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into batch values(&id,'&name',&stu_count,'&batch_type')
+  2
+SQL> insert into batch values(&id,'&name',&stu_count,'&batch_type');
+Enter value for id: 5
+Enter value for name: batch_5
+Enter value for stu_count: 20
+Enter value for batch_type: reg
+old   1: insert into batch values(&id,'&name',&stu_count,'&batch_type')
+new   1: insert into batch values(5,'batch_5',20,'reg')
+
+1 row created.
+
+SQL> /
+Enter value for id: 6
+Enter value for name: batch_6
+Enter value for stu_count: 30
+Enter value for batch_type: reg
+old   1: insert into batch values(&id,'&name',&stu_count,'&batch_type')
+new   1: insert into batch values(6,'batch_6',30,'reg')
+
+1 row created.
+
+SQL> /
+Enter value for id:
+Enter value for name:
+Enter value for stu_count:
+Enter value for batch_type:
+old   1: insert into batch values(&id,'&name',&stu_count,'&batch_type')
+new   1: insert into batch values(,'',,'')
+insert into batch values(,'',,'')
+                         *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL>
+SQL> desc batch
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                               VARCHAR2(20)
+ STU_COUNT                                          NUMBER(10)
+ BATCH_TYPE                                         VARCHAR2(20)
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+         4                              10 regular
+         5 batch_5                      20 reg
+         6 batch_6                      30 reg
+
+6 rows selected.
+
+SQL> update batch set stu_count=25 where id=6;
+
+1 row updated.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+         4                              10 regular
+         5 batch_5                      20 reg
+         6 batch_6                      25 reg
+
+6 rows selected.
+
+SQL> update batch set stu_count=15 where id in (1,2);
+
+2 rows updated.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      15 regular
+         2 batch_2                      15 regular
+         3 batch_3                      40 weekend
+         4                              10 regular
+         5 batch_5                      20 reg
+         6 batch_6                      25 reg
+
+6 rows selected.
+
+SQL> update batch set name='batch_4' where id=4;
+
+1 row updated.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      15 regular
+         2 batch_2                      15 regular
+         3 batch_3                      40 weekend
+         4 batch_4                      10 regular
+         5 batch_5                      20 reg
+         6 batch_6                      25 reg
+
+6 rows selected.
+
+SQL> update batch set stu_count=10,batch_type='reg' where id in (1,2);
+
+2 rows updated.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 reg
+         2 batch_2                      10 reg
+         3 batch_3                      40 weekend
+         4 batch_4                      10 regular
+         5 batch_5                      20 reg
+         6 batch_6                      25 reg
+
+6 rows selected.
+
+SQL> delete from batch where name='batch_6'
+  2  ;
+
+1 row deleted.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 reg
+         2 batch_2                      10 reg
+         3 batch_3                      40 weekend
+         4 batch_4                      10 regular
+         5 batch_5                      20 reg
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+
+SQL> delete from batch where name='batch_1'
+  2  ;
+
+1 row deleted.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+
+SQL> delete from batch where name like 'batch%';
+
+3 rows deleted.
+
+SQL> select * from batch;
+
+no rows selected
+
+SQL> select * from batch;
+
+no rows selected
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from batch;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+
+SQL> select * from batch where id>1;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         2 batch_2                      20 regular
+         3 batch_3                      40 weekend
+
+SQL> select * from batch where stu_count<15;
+
+        ID NAME                  STU_COUNT BATCH_TYPE
+---------- -------------------- ---------- --------------------
+         1 batch_1                      10 regular
+
+SQL> select stu_count from batch;
+
+ STU_COUNT
+----------
+        10
+        20
+        40
+
+SQL> select count(*) from batch;
+
+  COUNT(*)
+----------
+         3
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> show user
+USER is "SYSTEM"
+SQL>
+SQL>
+SQL>
+SQL> create user pragim identified by pragim;
+
+User created.
+
+SQL> conn
+Enter user-name: pragim
+Enter password:
+ERROR:
+ORA-01045: user PRAGIM lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL>
+SQL>
+SQL> grant dba to pragim;
+SP2-0640: Not connected
+SQL> grant system to pragim;
+SP2-0640: Not connected
+SQL> conn system/system
+Connected.
+SQL> grant system to pragim;
+grant system to pragim
+      *
+ERROR at line 1:
+ORA-01919: role 'SYSTEM' does not exist
+
+
+SQL> grant dba to pragim;
+
+Grant succeeded.
+
+SQL> show user
+USER is "SYSTEM"
+SQL>
+SQL>
+SQL>
+SQL> conn
+Enter user-name: pragim
+Enter password:
+Connected.
+SQL> show user
+USER is "PRAGIM"

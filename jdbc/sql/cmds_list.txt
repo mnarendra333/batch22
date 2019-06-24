@@ -1,0 +1,44 @@
+JDBC:
+=====
+
+
+DDL - Data Defination Language
+DML - Data Manipulation Language
+DCL - Data Control Language
+TCL - Transaction Control Language
+
+
+DDL:
+====
+CREATE
+ALTER
+    - ADD
+	- MODIFY
+	- RENAME
+	- DROP
+DROP
+TRUNCATE
+RENAME
+
+
+DML
+===
+INSERT
+UPDATE
+DELETE
+
+DCL:
+====
+SELECT
+
+TCL:
+====
+COMMIT
+ROLLBACK
+GRANT
+SAVEPOINT
+
+
+
+
+ 
