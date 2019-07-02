@@ -1,0 +1,1045 @@
+J2EE(advanced JAVA)
+====================
+Deployement&unDeployment
+----------------------
+-the process of keeping developed WebApplications 
+in webserver is called deployment and reverse is 
+called undeployment
+
+*)list of technologies and softwares that are 
+required to develop and execute webapplications(website)
+
+1)browser window software (browserwindow act as a client)
+2)webserver s/w (to automate the execution of webapplication
+and its webresourse programs)
+3)web technologies(to develop webresourse programs)
+4)databse softwares
+
+list of browser softwares
+-------------------------
+InternetExplorer  -  from Microsoft
+
+NetscapeNavigator -  from NetScape Organization
+
+Opera             -  from Opera Soft
+
+Hotjava           -  from RedHat
+
+Firefox           -  from Mozilla
+
+chrome		  -  from Google
+
+list of clientside technolgies
+------------------------------
+(to develop clientside webresourse programs)
+
+HTML              -  from w3c
+
+JavaScript        -  from NetScape
+
+Ajax              -  from Adaptive path
+
+VBscript          -  from Microsoft
+
+list of serverside technologies
+--------------------------------
+(to develop serverside programs)
+
+1)servlets        -  frm SunMS(OracleCorp)-(java based)
+2)jsp             -  from SunMS(OracleCorp)-(java based)
+3)asp.net         -  from Microsoft        -(non-java)
+4)php             -  from Apache           -(non-java)
+5)sijs            -  from Netscape         -(non-java)
+6)coldfusion      -  from adobe            -(non-java)
+
+list of webserver softwares
+---------------------------
+1)tomcat          -  from Apache           -(java based)
+2)Resion          -  from Resin soft       -(java based)
+3)jws             -  from SunMS(OracleCorp)-(java based)
+4)pws             -  from Microsoft        -(non-java)
+5)iis             -  from Microsoft        -(non-java)
+6)aws             -  from apache           -(non-java)
+
+list of application server softwares(enhancement of webserver)
+------------------------------------
+1)Weblogic        -  from BEA systems(OracleCorp)
+2)Websphere       -  from IBM
+3)JBoss           -  from apache(now it is in RedHat)
+4)JRun            -  from adobe
+5)GlashFish       -  from SunMS
+6)Oracle10gAs     -  from OracleCorp
+
+//all application server softwares are belongs to javabased
+
+to develop and execute java based web-applications
+==================================================
+-choose any browser software
+-choose one or more clientside technologies to
+ develop clientside webresourse programs
+-choose javabased serverside technologies to develop
+ serverside webresource programs
+-choose javabased webserver/application s/w to manage
+ and execute webapplications
+-choose any database software
+
+Tomcat
+------
+type          :  Javabased webserver
+version	      :  Tomcat 6.0(compatable with jdk 1.5)
+                 Tomcat 7.0(compatable with jdk 1.6)
+vendor        :  Apache foundation
+
+ -it is opensourse software
+ -default portno-8080
+ -name of the servlet container : CATALINA
+ -name of the jsp container     : JASPER
+ -creator                       : Mr. David Dunconson
+ -to download software          : www.apache.org
+
+ -while installing tomcat-6 we need to choose the 
+  installation folder default port number,admin username 
+  and password
+
+ c:\Tomact 6.0(<tomcat-home>)
+   |
+   |---------->bin
+   |            |----->*.exe(Tomcat6.exe)
+   |
+   |
+   |---------->conf
+   |            |-----> *.xml(server.xml,context.xml,tomcat-users.xml)
+   |
+   |
+   |---------->webapps
+   |            |----->app1,app2,app3...*.war
+   |
+   |
+   |---------->logs
+   |            |-----> *.txt(log files)
+   |
+   |
+   |---------->work
+   |             |-----> *.jar(servlet-api.jar,jsp-api.jar
+   |		              catalina.jar,jasper.jar)
+   |
+   |---------->temp
+   |
+   |
+   |
+   |---------->other miscfiles
+
+-to deploy webapplications in tomcat server to copy
+ webapplication directory or warfile to 
+ <tomcat-home>/webapps folder
+
+-<tomcat-home>\lib\servlet-api.jar,jsp-api.jar files
+represents sunmicrosystem supplied servlet,jsp api 
+respectively
+
+to change port number
+-----------------------
+tomcat6.0-conf-server.xml-connector-port->change
+-after changing port number restart the server
+
+to see the homepage of tomcat
+-----------------------------
+1)start tomcat server
+  <tomcat-home>\bin\tomcat6.exe 
+2)type this url in browserwindow
+ http:\\localhost:<portno>
+
+
+Directory structure of webapplication
+-------------------------------------
+
+  root directory
+      |
+      |----->WEB-INF
+      |         |
+      |         |------>classes
+      |		|         |----->*.java,*.class
+      |         |
+      |		|------>lib
+      |         |         |----->*.jar files
+      |		|
+      |		|------>web.xml
+      |
+      |----->*.html
+
+      |----->*.css,*.js,images etc..
+
+->what is servlet?
+
+-it is a server side technology to develop
+dynmic webresource programs
+           (or)
+
+-servlet is a javabased server side web technology
+that allows us to develop single instance/multiplethreads
+based server side webresource programs
+
+servlet-api
+-----------
+
+servlet.api 2.5 packages are
+
+javax.servlet.*;
+javax.servlet.http.*;
+
+servlet 3.0 packages are
+
+javax.servlet.*;
+javax.servlet.http.*;
+javax.servlet.annotation.* etc...
+
+
+
+the 3 important resources of servlet-api 2.5
+
+
+javax.servlet.Servlet (i)
+         ^
+         |  implements
+	 |
+javax.servlet.GenericServlet (c)
+	 ^
+	 |   extends
+	 |
+javax.servlet.http.HttpServlet (c)
+
+-url pattern is used to hide the technology
+name from the end user
+
+methods under Servlet interface
+-------------------------------
+1)public void init(ServletConfig config)
+
+--Called by the servlet container and it 
+provides the intialization logic
+
+2)public void service(ServletRequest req, ServletResponse res)
+
+--Called by the servlet container and in this
+method we write our bussiness logic.
+
+3)public void destroy()
+
+ --Called by the servlet container to indicate
+ to a servlet that the servlet is being taken
+ out of service.
+
+4)public ServletConfig getServletConfig()
+ 
+ --Returns a ServletConfig object, which
+ contains  initialization and startup 
+ parameters for this servlet.
+ 
+5)public String getServletInfo() 
+          
+--Returns information about the servlet,
+such as author,  version, and copyright.
+ 
+GanericServlet(abstract class)
+--------------
+--GenericServlet implements the Servlet and
+ServletConfig interfaces.
+
+--To write a GenericServlet, you need only
+override the  abstract service method to 
+provide our own bussiness logic.
+
+--so GenericServlet class is abstract class
+
+imp methods
+-----------
+1)public void init() 
+
+2)public void init(ServletConfig config) 
+
+3)public void destroy() 
+
+4)String getInitParameter(String name) 
+         
+5)Enumeration<String> getInitParameterNames() 
+         
+6)ServletConfig	getServletConfig() 
+         
+7)ServletContext getServletContext() 
+          
+8)public String getServletInfo() 
+
+9)public String getServletName() 
+
+10)public void log(String msg)
+
+11)public void log(String message, Throwable t)
+ 
+12)public abstract void service(ServletRequest req, ServletResponse res) 
+
+HttpServlet(abstract class)
+-----------
+--HttpServlet class extends the GenericServlet
+and  implements Serializable interface
+
+--in HttpServlet it provieds the implementation
+for all abstract methods still it is abstract
+class
+
+methods
+-------
+protected  void	doGet(HttpServletRequest req, HttpServletResponse resp) 
+
+protected  void	doPost(HttpServletRequest req, HttpServletResponse resp) 
+
+public void service(ServletRequest req, ServletResponse res) 
+          
+protected  void	service(HttpServletRequest req, HttpServletResponse resp) 
+         
+How to develop web-application in eclipse ide
+----------------------------------------------
+1)switch to j2ee view
+
+2)file-> new-->DynamicWebProject-->enter 
+project name for example(SampleApp)-->
+select webresource version as 2.5-->
+next->next->click on Generate web.xml checkbox
+-->finish.
+
+3)click on project and expand it
+
+4)right click on webcontent folder-->new-->
+select html file and give name-->finish.
+
+5)copy and paste the previous DateApp html
+file content
+
+6)right click on project-->buildpath-->
+configure buildpath-->libraries tab-->
+add external jars-->goto tomacat lib folder
+-->select servlet-api.jar file-->
+open-->ok
+
+7)expand javaresources-->right click on src->
+new->servlet give name Example MyServlet-->
+change the super class to GenericServlet-->
+next-->double click on url and chagne
+it to as same as specified  html file url-->
+next-->finish
+
+8)write the logic in service method
+
+9)how to configure tomcat server
+ -------------------------------
+ at downside servers tab is there
+
+ goto servers tab-->right clcik on blank space
+ -->new-->server-->expand apache-->
+ select tomcat 6.0(or)7.0-->next-->finish.
+
+10)right clcik on project folder-->runas-->
+run on server-->next-->finish.
+
+*)html form page can generate two methodology based
+  requests
+
+ 1)get (can send limited amount of data) 
+ 2)post(can send unlimited amount of data along with 
+ the request
+
+28-02-2014
+==========
+methods under javax.servlet.ServletRequest
+------------------------------------------
+1)public String getParameter(String name)
+
+2)public String getParameterValues(String name)
+
+3)public Enumaration getParameterNames()
+
+4)public int getContentLength()
+
+	returns the size of request entity data
+	it fails to give returns -1
+
+5)public String getContentType()
+
+6)public String getServerName()
+
+	returns localhost or domain like gmail.com
+
+7)public int getServerPort()
+
+	returns port number of server
+
+ServletConfig(interface)
+-----------------------
+->an object of servletconfig is created by the
+ servletcontainer
+
+->by using that servletconfig object we can get
+the information from web.xml
+
+->for each servlet one servletconfig object is created
+
+->these config object is used to get the 
+ init parameters from web.xml
+
+methods of servletconfig interface
+----------------------------------
+1)public String getInitParameter(String name)
+
+2)public Enumaration getInitParameterNames()
+
+3)public String getServletName()
+
+4)public ServletContext getServletContext()
+
+
+how to create object for servletconfig
+--------------------------------------
+ServletConfig sc=getServletConfig();
+
+ServletContext(interface)
+---------------
+->ServletContext object is created by 
+servletcontainer
+
+->ServeltContext object is single per entire 
+webapplication but ServletConfig object is 
+created for each servlet 
+
+->once the object is created we can use that object 
+  in any of the servlet program in the project
+
+->it is having global visibulity
+
+methods
+-------
+1)public String getInitParameter(String name)
+
+2)public Enumaration getInitParameterNames()
+
+3)public void setAttribute(String name,Object obj)
+
+4)public Object getAttribute(String name)
+
+
+5)public void removeAttribute()
+
+how to create the object for ServletContext
+-------------------------------------------
+we can create the object in 2 ways
+
+1)ServletContext sc=getServletConfig().getServletContext();
+
+2)ServletContext sc=getServletContext();
+
+*)what is <load-on-startup>
+
+when <load-on-startup> is enabled on servlet program
+the servlet container creates the object of servlet 
+class either during the server startup(or) during the 
+deployment of the webapplication
+
+03-03-2014
+***********
+how to create the war file
+==================
+
+e:\Dateapp>jar cvf Dateapp.war .
+
+c->create war/jar file
+
+f->specify war/jar filename
+
+.  ->current directory
+
+note
+===
+Dateapp.war represents one java webapplication 
+
+-we can deploy java webapplication in server
+
+ by fallowing 3 approches
+
+ approch1:(Console Deployment)
+ ---------------------------------
+ prepare war file and deploy that file by using
+ admin console of server
+
+ approch2:(Hard deployemnt)
+ ------------------------------
+ copy directory or war file of the webapplication
+ to a fixed folder
+ of server sw installation.like 
+ <tomcat-home>\webapps
+
+ **approch3:(Tool based deployment)
+ ------------------------------------
+ deployement by using ant,maven etc..tools
+
+->what is the diff bw hard deployemnt & cold deployment
+
+	if the webapplication is deployed when the 
+	server is in 
+	running mode then it is called hard 
+	deployment
+
+	if the webapplication is deployed when
+	server is in 
+	shutdown mode then that is called cold
+	deployemnt
+
+*) war file(web application archive)-java web application
+
+*) jar file(java archive)-ejb component
+
+*) ear file(Enterprise application archive)
+                (jar file+war file)
+*) rar file(resource adapter archive)
+
+Application Server
+=================
+application server=
+webserver+ejb container+more middleware services
+
+-ejb container is reqired to exicute ejb
+components
+
+-middleware services are the additional services
+that can be applied 
+ on the applications to make applications 
+ more perfect and accurate 
+ application
+ ex)security,jdbc connection pooling and etc
+
+*) what is the diff bw webserver and application server
+
+webserver
+-------------
+-given to manage and execute webapplicatons
+(war file)
+-use only servlet,jsp containers
+-developed based on servlet,jsp 
+specifications of jee module
+-does not allow to create domains
+-gives less number of middleware services
+-allows only http,https protocal based requests
+-suitable to developing smallscale ,mediumscale
+webapplications
+ex)tomcat,resin,jetty,iis and etc
+
+application server
+----------------------
+-given to manage and execute warfiles ,
+ejb components(jar files),
+ enterprize applications(ear files) and
+ resourse adapter applications
+ (rar files)
+ -use servlet container,jsp container,ejb container and etc other 
+ containers
+ -developed based on servlet,jsp 
+ specifications of jee module
+ -it allows to create domains
+ -gives more number of middleware services
+ -allows http,https,iiop,p3 and other protocal
+ based requests
+  -suitable for developing largescale
+  webapplications 
+ ex)weblogic,glashfish,jboss etc
+
+diff approches of reading init param values from web.xml
+------------------------------------------------------------------------
+approch1
+-----------
+ServletConfig cg=getServletConfig();
+String s1=cg.getInitParameter("driver");
+
+-we must know init param name here
+
+approch2
+-----------
+Enumaration e=cg.getInitParameterNames();
+while(e.hasMoreElements())
+{
+	String name=(String)e.nextElement();//gives each init parameter name
+	String val=cg.getInitParameter(name);//gives each init parameter value
+	pw.println(name+" "+val);
+}
+
+04-03-14
+****************
+weblogic
+   |
+   |-------->type:Application server s/w
+   |
+   |-------->version:10.3(compatable with jdk 1.6)
+   |
+   |-------->commercial sw
+   |
+   |-------->default portno:7001
+   |
+   |-------->vendor:BEA systems(Oracle corp)
+   |
+   |-------->to download sw:www.commerce.bea.com(or)
+   |             www.oracle.com
+   |-------->allow to create domains .each domain acts as a
+   |             one server
+   |
+   |-------->jar file that represents all jeeapis(weblogic.jar)
+   |
+   
+   procedure to create userdefined domain server in weblogic
+   --------------------------------------------------------------
+   start->programs->oracleweblogic->quick start->
+   getting started with weblogic server
+   ->create a new weblogic domain->generate a domain
+  configured-> domain name(9amdomain)->next
+  ->choose username,password->next-> next->adminserver
+  ->next->listnerport(7001)->next->create->done.
+
+   procedure to perform console deployment of java webapplication
+   in 9am domain server of weblogic
+   ----------------------------------------------------------------------
+   step1:-start 9amdomain server
+
+   start->programs->oracleweblogic->userprojects->9amdomain->
+   start adminserver for weblogic
+
+   step2:
+   open the admin console of the server->login->username,password
+
+   step3:
+   deploy the webapplication in admin console ->deployments->install
+   ->upload ur files->browse and select war file(the above voterapp.war)
+   ->next->next->finish->save.
+
+   step4:test the application
+   open browser window->http://localhost:7001:/voterapp/index.html
+
+   diagram on connectionpool
+   ---------------------------
+
+   procedure to create jdbc datasource,jdbc connection pool for 
+   oracle in 9am domain server of weblogic
+   -----------------------------------------------------------------
+   ->start 9am domain server and open its admin console 
+  
+  ->create datasource jdbc connection pool for oracle admin console screen
+  ->services->jdbc->datasource->new->give datasource name like myds1(logical name),jndi name(my jndi)
+  ->next->database name       :        xe
+              hostname            :        localhost
+	     database username  :  system
+	      password            :  system
+	      confirm password   :  system
+->next->test configuration->next->select adminserver->finish.
+|
+|--->the above procedure will creates the datasource object reference in 
+        jndi registry software having alias name(myjndi)
+
+ServletChaining:
+---------------
+
+the process of taking request from a client and 
+processing that request by using multiple servlet
+programs that are there in chaining/communicaton
+is called servletchaning.Servletchaining is
+nothing but one servlet communicate with 
+another servlet to process the request
+coming from a client 
+
+diagram
+-------
+another notepad...
+
+
+different approaches of creating RequestDispatcher object
+===========================================
+approch1: (using request attribute)
+-----------------------------
+RequestDispatcher rd=req.getRequestDispather("s2url");
+rd.forward(req,res);
+            (or)
+rd.include(req,res);
+
+approch2: (using ServletContext object)
+---------------------------------
+ServletContext sc=getServletContext();
+RequestDispatcher rd=sc.getRequestDispather("/s2url");
+rd.forward(req,res);
+            (or)
+rd.include(req,res);
+
+approch3: (using ServletContext object)
+----------------------------------
+ServletContext sc=getServletContext();
+RequestDispatcher rd=sc.getNamedDispather("s2url");
+rd.forward(req,res);
+            (or)
+rd.include(req,res);
+
+
+Q)what is the diff bw getRequestDisptcher(-) and getNamedDispatcher(-) 
+getRequestDispatcher	getNamedDispatcher
+1)invocable on request,ServletContext object	
+1)invocable on ServletContext object
+2)allows to take servlet,jsp,html programs as 
+destination programs	
+2)does not allow to take html programs as 
+destination programs
+3)takes url pattern and filename as arguments
+3)takes logical name of dest servlet/jsp program as a argument value
+
+Q)what is the diff bw creating request dispatcher
+object by using request object or by using 
+servletcontext object?
+
+Request object based RequestDispatcher object
+allows to keep source and dest prog either in same 
+webapplication or in two different webapplications
+of same server for chaining.
+
+Note:
+-----
+Requestdispather object cant be used to perform 
+servlet chaning bw source and dest programs which
+are reside in two different servers.for that concept 
+we need to go for sendRedirection based servlet chaining.
+ 
+
+  
+05-03-14
+Limitations of RequestDispatcher object
+----------------------------------
+-->does not allow to keep source and destination
+programs in two different Webapplications of two
+different servers
+-->does not allow to take asp.net,asp,php programs 
+as the destination programs allow to keep source and
+destination programs in two different webapplications 
+  of same server but it works only in few servers
+-->to overcome this problem send redirection based 
+servlet chaining by using 
+
+    response.sendRedirect() method
+
+understanding sendRedirection
+-------------------------
+in srv1 program
+---------------
+response.sendRedirect("/s2url?p1=val1&p2=val2");
+                         (or)
+response.sendRedirect(
+http://localhost:2040/WebApp2/s2url?p1=val1&p2=val2);
+
+in srv2 program
+-------------
+String s1=req.getParameter("p1");//gives val1
+String s2=req.getParameter("p2");//gives val2
+
+srv1 and srv2 programs can be there in same 
+webapplication (or) in two different 
+webapplications of same or differnt servers 
+and these servers can be there in same
+or different machines
+
+we can pass reletiveURL in res.sendRedirect(url) 
+ifsrv1,srv2 programs reside in same 
+webapplication otherwise we need to
+pass absolute url
+
+srv2 program can be developed by using any 
+webtechnology like servlet,jsp,html,php,
+asp,asp.net and etc
+
+*)how to pass the data bw source and destination
+webresource programs?
+
+a)if source and destination programs reside
+in same webapplication use request attributes.
+we can use these 
+request attributes in response page.request will
+be dead after response will given back to target
+page.
+
+b)use session attributes(source and destination 
+programs are getting request from same 
+browser window)
+
+c)Application attributes/servletcontext attributes
+(if source and dest programs are not using
+same req,res objects and not getting request
+from same browser window)
+
+d)if source and dest programs reside in two diff 
+ webapplications
+ append query string to the url of
+ res.sendRedirect(-)
+ res.sendRedirect(url?p1=val&p2=val2&p3=val3);
+
+
+ request attributes
+ ----------------
+ these scope is request scope
+
+to create request attribute values
+----------------------------
+ req.setAttribute("name","varun");
+ req.setAttribute("age",25);
+
+ to modify request attribute values
+ ----------------------------
+ req.setAttribute("name","tarun");
+ req.setAttribute("age",28);
+
+ note
+ ----
+ setAttribute modifies the attribute value if 
+ that attribute is already available otherwise
+ it creates the new attribute.
+
+ to read request attribute values
+ ---------------------------
+ int val1=(Integer)req.getAttribute("age");
+ String s1=(String)req.getAttribute("name");
+
+ 
+ to remove request attribute values
+ -----------------------------
+ req.removeAttribute("name");
+ req.removeAttribute("age");
+ 
+ session attributes(HttpSession object)
+ ---------------
+ allocates memory on the server on one per 
+ browser window basis 
+
+ session attributes reside in http session obj&they
+ are visible in all webresource programs of 
+ webapplication.
+
+session attributes are visible throughout
+webapplication but they are specific
+to a client(browser window)
+
+session attribute scope is session scope
+
+to create HttpSession obj/to access the 
+existing session obj
+--------------------------------------------------
+HttpSession ses=req.getSession();
+
+to create a session attributes
+-------------------------
+session.setAttribute("name","joya");
+session.setAttribute("age",35);
+
+to modify session attribute values
+-----------------------------
+ses.setAttribute("name","maya");
+ses.setAttribute("age",25);
+
+to read session attribute values
+--------------------------
+String s1=(String)ses.getAttribute("name");
+int age=(Integer)ses.getAttribute("age");
+
+to remove session attribute valaues
+----------------------------
+ses.removeAttribute("name");
+ses.removeAttribute("age");
+
+ServletContext attributes
+---------------------
+-->ServletContext obj is one per webapplication
+and it is called globalmemory of webapplications
+-->ServletContext object allocate memory 
+in ServletContext object and these
+attributes are the global attributes of 
+the webapplication
+
+to create servletcontext attributes
+-----------------------------
+ServletContext sc=getServletContext();
+sc.setAttribute("name","arohi");
+sc.setAttribute("age",24);
+
+to modify the servletcontext attribute values
+-------------------------------------
+sc.setAttribute("name","alekya");
+sc.setAttribute("age",26);
+
+to read servletcontext attribute values
+---------------------------------
+String s1=(String)sc.getAttribute("name");
+int age=(Integer)sc.getAttribute("age");
+
+to remove servletcontext attributes
+------------------------------
+sc.removeAttribute("name");
+sc.removeAttribute("age");
+
+Listeners
+========
+using listeners we can monotor various activities
+of the webapplication without touching the 
+sourcecode of webapplication
+
+*)Action performed on the object or component
+is called event
+*)The logic that exicutes when event is raised
+is called event handling
+*)to perform the event handeling we need
+event listeners.because event listeners
+supply event handeling methods
+
+ Example scenario
+ ----------------------
+ source obj:(awt/swing button)
+ 
+ Event:ActionEvent(raises when button is clicked)
+
+ EventListener:ActionListener(requires to handle
+ ActionEvent)
+
+ EventHandeling method:
+
+ public void actionPerformed(ActionEvent ae)
+ {}(event handeling method)
+
+*)from servlet-api 2.3 the event handelling is 
+possible on 3
+   important objects of webapplication development
+
+   1)request obj
+   -----------------
+   ->allows to know when request obj is 
+   created/destroyed
+   ->allows to know attributes added ,modified,
+   removed on to the request object
+   ->eventhandelling on request object allows 
+   us to know when req arrived and response 
+   delivered,based on this we can notice amount 
+   of time taken by each req to process that request
+    
+   2)HttpSession obj
+   -----------------------
+   ->allows to know when servletcontext obj 
+   is created/destroyed
+   ->allows to know when session attributes
+   are added ,modified,removed on to the session
+   object
+   ->allows to know when session is started ,
+   ended and how much time that the 
+   enduser is there in the session
+  
+  3)ServletContext obj
+  --------------------------
+  ->allows to know when ServletContext 
+  obj is created/destroyed 
+  ->allows to know when context attributes
+  are added ,modified,removed on to the context object
+  ->allows to keep track of when webapplication
+  is deployed(or)reloaded(or)undeployed
+
+     to perform event handelling we need the fallowing 4 details
+     -------------------------------------------------------------------------
+     1)source obj(like button)
+     2)Event class(like ActionEvent)
+     3)EventListener(like ActionListener)
+     4)Event handelling method(public void actionPerformed(-))
+source obj
+-------------
+request
+servletcontext
+httpsession
+
+Event class
+---------------
+ServletRequestEvent
+ServletContextEvent
+HttpSessionEvent
+
+EventListener
+------------------
+ServletRequestListener
+ServletContextListener
+HttpSessionListener
+
+Action performed event handelling methods
+-------------------------------------------------------
+(requestIntialized(-),requestDestroyed(-))
+(contextIntialized(-),contextDestroyed(-))
+(sessionCreated(-),sessionDestroyed(-))
+
+procedure to apply all the 3 listeners on 
+urlrewriting app
+1)keep urlrewriting app in tomcat webserver
+2)develop the fallowing 3 listener classes in WEB-INF/classes folder
+
+tomcat server gives logfiles in 
+<tomcat-home>\logs folder on one per day basis
+
+to write messages to the logfiles use the fallowing code
+
+ServletContext sc=getServletContext();
+sc.log("something..");
+
+ServletFilters
+-----------------
+-to add additional functionalities to the existing webapplication
+without distrubing the sourcecode of webresource programs
+we need to add servlet filter programs and we need to link this 
+program with existing webresource programs of webapplication
+
+-servlet filter program is a special webresource program of java 
+webapplication i.e is capable of trapping request and response of 
+other webresource programs
+
+-when servletfilter traps the request it exicutes pre-request processing
+logic 
+-when servletfilter traps the response it exicutes post-response generation
+logic
+-the java class that implements javax.servlet.Filter(I) is called 
+servletfilter prog ,every servletfilter prg must be configured in 
+web.xml file using <filter>,<filter-mapping>
+
+diagram
+-----------
+
+filter life cycle methods
+-----------------------------
+1)init(FilterConfig cg)
+2)doFilter(ServletRequest req,ServletResponse res,FilterChain fc)
+3)destroy()
+
+we can map/link servletfilter prg with one or more servletprg/jsp prgs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
