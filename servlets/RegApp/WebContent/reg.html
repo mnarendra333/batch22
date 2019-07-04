@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+
+.myUl{
+	list-style: none;
+
+}
+
+</style>
+</head>
+<body>
+	<h2>Register Here!!!</h2>
+	
+	
+	<form action="regsrv" method="post">
+		<table>
+
+		<tr>
+			<td>FirstName</td>
+			<td><input type="text" name="fname" /></td>
+		</tr>
+		<tr>
+			<td>LastName</td>
+			<td><input type="text" name="lname" /></td>
+		</tr>
+		<tr>
+			<td>Gender</td>
+			<td><input type="radio" name="gen" value="male">Male</td>
+			<td><input type="radio" name="gen" value="female">Female</td>
+		</tr>
+		<tr>
+			<td>City</td>
+			<td><select name="city">
+			<option>--select--</option>
+					<option>bangalore</option>
+					<option>chenni</option>
+					<option>pune</option>
+					<option>hyd</option>
+					<option>mumbai</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td>DOB</td>
+			<td><input type="date" name="dob" /></td>
+		</tr>
+		<tr>
+			<td>Address</td>
+			<td>
+			
+				<textarea name="addr"></textarea>
+				
+			</td>
+		</tr>
+		<tr>
+			<td>Hobbies</td>
+			<td>
+				<ul class="myUl">
+					<li><input type="checkbox" name="hob" value="Cricket">Cricket</li>
+					<li><input type="checkbox" name="hob" value="readingBooks">readingBooks</li>
+					<li><input type="checkbox" name="hob" value="chess">chess</li>
+					<li><input type="checkbox" name="hob" value="watchingTV">watchingTV</li>
+				</ul>
+			<!-- <input type="checkbox" name="hob">Cricket</td>
+			<td><input type="checkbox" name="hob">readingBooks</td>
+			<td><input type="checkbox" name="hob">chess</td>
+			<td><input type="checkbox" name="hob">watchingTV</td> -->
+		</tr>
+		
+		<tr>
+			<td>Skills</td>
+			<td>
+				<select name="skills" multiple="multiple">
+					<option>JAVA&J2EE</option>
+					<option>ORACLE</option>
+					<option>ANGULAR6</option>
+					<option>WEBSERVICES</option>
+			
+				</select></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="register"/></td>
+			
+		</tr>
+
+
+	</table>
+	
+	
+	</form>
+
+
+
+</body>
+</html>
