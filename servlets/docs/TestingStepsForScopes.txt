@@ -1,0 +1,33 @@
+Testing:
+===========
+https://github.com/mnarendra333/batch22.git
+
+step1:
+
+->Access http://localhost:7777/ScopesInServlets/ in chrome 
+	Enter form data->submit
+	
+	expectation:
+	============
+	req (3 params)
+	session(3 params)
+	context(3 params)
+	
+step2:
+
+->Access chrome http://localhost:7777/ScopesInServlets/srv2
+
+	expectation:
+	============
+	request data should be empty
+	session should have data - 3 params
+	context should have data - 3 params
+	
+step3 :
+	->Access http://localhost:7777/ScopesInServlets/srv2 in IE 
+
+	expectation:
+	============
+	request data should be empty
+	serssion data should be empty
+	context should have data - 3 params
