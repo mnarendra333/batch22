@@ -1,9 +1,9 @@
 package pack1;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class FirstServlet
  */
 @WebServlet("/srv1")
-public class FirstServlet extends HttpServlet {
+public class FirstServlet extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -27,26 +27,30 @@ public class FirstServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
 		
-		PrintWriter out = response.getWriter();
+		
+		//get form data
+		
+		String personName = request.getParameter("pname");
+		String fathersName = request.getParameter("fname");
 		response.setContentType("text/html");
 		
-		//collect form data
-		String name = request.getParameter("pname");
-		String fathersName = request.getParameter("fname");
+		//put the data into cookies
 		
-	
+		Cookie c1 = new Cookie("perName", personName);
+		Cookie c2 = new Cookie("fatrsName", fathersName);
 		
-		out.println("<form action=srv2 method=post>");
-		out.println("<input type=hidden name=pname value="+name+">");
-		out.println("<input type=hidden name=fname value="+fathersName+">");
+		response.addCookie(c1);
+		response.addCookie(c2);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("form2.jsp");
 		rd.include(request, response);
+		
 	}
 
 }

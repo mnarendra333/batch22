@@ -6,7 +6,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 
-	<table class="table table-hover">
+	<form action="srv2">
+	
+		<table class="table table-hover">
 
 		<tr>
 			<td>Income</td>
@@ -21,5 +23,7 @@
 		</tr>
 
 	</table>
+	
+	</form>
 
 
