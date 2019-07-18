@@ -3,8 +3,10 @@ package com.pragim.httpsessionwithcookies.controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,32 +63,44 @@ public class ThirdServlet extends HttpServlet {
 				//conversions
 				
 				
-				//Date d = new Date(date)
 				
 				try {
 					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					
+					Date yearParsed = sdf.parse(year);
+					java.sql.Date date = new java.sql.Date(yearParsed.getTime());
+					
 					Connection conn = ConnectionUtility.getConnectionFromDB();
 					
-					PreparedStatement pstmt = conn.prepareStatement("insert into reg_form_data values(reg_form_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?)");
+					PreparedStatement pstmt = conn.prepareStatement("insert into reg_form_data values(reg_form_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?)");
 					
 					pstmt.setString(1, perName);
 					pstmt.setString(2, fathersName);
 					pstmt.setString(3, phNo);
 					pstmt.setString(4, emailId);
 					pstmt.setString(5, qualification);
-					pstmt.setString(1, perName);
-					pstmt.setString(1, perName);
-					pstmt.setString(1, perName);
-					pstmt.setString(1, perName);
-					pstmt.setString(1, perName);
-					pstmt.setString(1, perName);
-					pstmt.setString(1, perName);
+					pstmt.setDate(6, date);
+					pstmt.setString(7, university);
+					pstmt.setString(8, skill);
+					pstmt.setString(9, exp);
+					pstmt.setString(10, sal);
+					pstmt.setString(11, loc);
+				
 					
 					
 					int count = pstmt.executeUpdate();
 					
+					if(count>0) {
+						
+						RequestDispatcher rd = request.getRequestDispatcher("success.jsp");
+						rd.forward(request, response);
 					
+					}
 				} catch (Exception e) {
+					
+					
+					e.printStackTrace();
 				}
 				
 				
