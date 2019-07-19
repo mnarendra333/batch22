@@ -63,13 +63,17 @@ public class ThirdServlet extends HttpServlet {
 				//conversions
 				
 				
-				
+				Date yearParsed = null;
+				java.sql.Date date = null;
 				try {
 					
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					
-					Date yearParsed = sdf.parse(year);
-					java.sql.Date date = new java.sql.Date(yearParsed.getTime());
+					if(year!=null) {
+						yearParsed = sdf.parse(year);
+						date = new java.sql.Date(yearParsed.getTime());
+					}
+					
 					
 					Connection conn = ConnectionUtility.getConnectionFromDB();
 					
