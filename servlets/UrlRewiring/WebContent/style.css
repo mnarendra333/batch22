@@ -1,0 +1,35 @@
+.divRow {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.lableDiv {
+	padding-bottom: 10px
+}
+
+.inputClass {
+	width: 250px;
+	height: 25px;
+	background-color: beige;
+	border-radius: 10px;
+}
+
+.btnClass{
+
+	height: 35px;
+    border-radius: 10px;
+    background-color: burlywood;
+    cursor: pointer;
+    text-align: center;
+    margin:auto;
+  	display:block;
+}
+.center {
+  margin: auto;
+  width: 300px;
+  height:400px;
+  border: 1px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #48D1CC;
+}
