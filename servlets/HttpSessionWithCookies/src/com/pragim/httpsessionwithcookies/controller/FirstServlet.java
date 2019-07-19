@@ -47,7 +47,7 @@ public class FirstServlet extends HttpServlet {
 		session.setAttribute("emailId", emailId);
 		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("form2.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("form2.html");
 		rd.include(request, response);
 		
 		
