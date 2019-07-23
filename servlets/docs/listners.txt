@@ -1,0 +1,24 @@
+source 			Event class          EventListener 	 				action
+=====================================================================================
+request         ServletRequestEvent  ServletRequestListener   requestIntialized(-),
+															  requestDestroyed(-)
+															  
+															  
+
+httpsession    HttpSessionEvent		HttpSessionListener       sessionCreated(-),
+															  sessionDestroyed(-) 
+
+
+servletcontext ServletContextEvent  ServletContextListener	  contextIntialized(-),
+															  contextDestroyed(-)											  
+
+
+
+
+
+
+
+
+
+
+

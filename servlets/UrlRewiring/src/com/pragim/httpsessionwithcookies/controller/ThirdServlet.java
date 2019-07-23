@@ -95,6 +95,7 @@ public class ThirdServlet extends HttpServlet {
 					
 					int count = pstmt.executeUpdate();
 					
+					session.invalidate();
 					if(count>0) {
 						
 						RequestDispatcher rd = request.getRequestDispatcher("success.jsp");
