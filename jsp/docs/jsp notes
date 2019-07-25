@@ -1,0 +1,883 @@
+  JSP          (24-03-2014)
+=====(Java Server Page)
+|------>type:java based server side webtechnology
+|------>version:2.x
+|------>vendor:SunMs(OracleCorporation)
+|------>open source technology
+|------>needs jsp container for execution
+
+note:- jsp container is enhancement for 
+servlet container 
+-->for every jsp program equlant servlet 
+program is generated. jsp program execution
+is nothing but its jsp equlant servlet program
+execution.
+
+-->what is the difference between servlet and jsp?
+servlet
+-----
+1)does not support tag based programming
+2)strong java knowlegge is required so it is
+suitable only for java programmer
+3)placing html code in servlet program is complex
+
+4)allows to seperate html code form javacode
+
+
+5)modification done in sourcecode of servlet
+program will affected only with recompilation
+(or)realoding of webapplication
+6)exception handelling should be takencare by the
+programmer explicitly
+7)servlet program configuaration in web.xml 
+is mandatory
+8)we need to write additional code to recive 
+and reuse container supplied objects
+9)needs servletcontainer for execution
+
+-->the process of converting certain tagbased 
+code into certain programming language
+based code for execution is called page compilation
+html,jsp,asp and etc technology based code 
+exicute based on page compilation.
+-->the process of convering jsp code into 
+an equalnt servlet program is called jsp 
+page compilation.for this we need 
+jsp page compiler.every jsp container gives 
+one built-in pagecompiler.
+
+Servlet-api-->javax.servlet.*;
+		  javax.servlet.http.*; packages
+		  
+		  
+jsp-api     -->javax.servlet.jsp.*;
+		   javax.servlet.jsp.tagext.*;
+		   javax.servlet.jsp.el.*; packages
+-->jsp-api is the enhancement of servlet-api
+-->in tomcat server
+     servlet-api.jar represents servletapi
+     jsp-api.jar represents jspapi
+     catalina.jar represents servlet container
+     jasper.jar represents jsp container
+--all these jar files are avilable in 
+<Tomact-home>\lib flder
+
+-->jsp program generates dynamic webpages
+-->dynamic webpage contains some fixed content 
+some dynamic content
+-->javacode of jsp program generates varing
+content where as Template text of jsp program
+generates the fixed content 
+directory strucure of jsp
+-----------------
+--
+---
+--
+ABC.jsp
+<b>Welcome to jsp</b>
+<br>
+<%
+java.util.Date d=new java.util.Date();
+out.println(d.toString());
+%>
+<b>end of jsp</b>
+
+
+
+
+
+*)life cycle of jsp
+-------------------
+since every jsp program gets one equalant servlet
+program so jsp life cycle methods are same as
+servlet life cycle methods
+
+1)public void init(ServletConfig cg)-->
+for instantiation event
+2)public void service(ServletRequest req,ServletResponse res)
+->for request arrival event
+3)public void destory()-->for destruction event
+--> jspInit(),
+      _jspService()
+      jspDestroy()
+ methods are not lifecycle methods of jsp program
+ these are convinience methods given to
+ programmers
+ what are the phases of a jsp program
+ ----------------------------
+ ->translation phase
+ ->compilation phase
+ ->classloading(.class file is loaded by jvm)
+ ->instantiation(object of JES class is created)
+ ->intialization(jspInit() conviniance method called by 
+ life cycle init(Sc sc) that init() method will 
+ ->request processing(_jspService(ServletConfig config) method is called by 
+ lifecycle service(-,-) method
+ ->destory (jspDestroy() method called by 
+ lifecycle destroy()
+
+*)what happen when object of JES class is created
+---------------------------------------
+-->container calls init(ServletConfig) method on JES 
+class object
+-->if not available the super class 
+init(ServletConfig sc) method is exicuted in 
+case of tomcat the super class is HttpJspBase class
+-->this super class init(Servletconfig sc) method
+internally calls jspInit() method
+-->jspInit() is useful to place intialization logic of 
+jsp program like creating jdbc connection object
+-->in tomcat server the JES of ABC.jsp(jspApp1)
+will be generated in the fallowing location
+
+note:-
+the method that is called by container directly 
+when life cycle event is raised is called life 
+cycle event
+
+*)what happen when request arrival  event is raised
+---------------------------------------
+-->container creates one set of ServletRequest ,
+ServletResponse objects for the current request
+-->container calls public service(-,-)  on JES 
+class object as life cycle method
+-->since the public service(-,-) is not avilable in
+JES,JES super class (HttpJspBase in tomcat
+server) the public service of HttpServlet 
+class will exicuted(HttpServlet is the 
+superclass of JES super class)
+-->the public service(-,-) of HttpServlet calls 
+protected service(-,-) of JES class
+-->this protected service(-,-) of HttpServlet 
+class calls _jspService(-,-) of JES class
+
+note:-
+_jspService(-,-) of JES class is very usefull to place 
+request processing logic,code placed in scriptlet
+(<% ------%> automatically goes to _jspService(-,-) of JES 
+class
+
+what happen when destroy event is raised
+(when container is about
+to destroy JES class object)
+-------------------------------------------
+-->container calls the life cycle method of 
+destroy() on JES class object
+-->since not avilable ,destroy() method of JES superclass 
+(HttpJspBase) in tomcat server will executed
+-->this destroy of JES super class internally calls 
+jspDestroy() method
+
+q)what happens if sourcecode of jsp equalnt servlet(JES) 
+class is modified manually
+-->recompile jes class .java file explicitly
+-->reload the webapplication
+-->give next request to jsp program without modifying 
+the sourcecode of jsp program
+-->to recompile the tomcat server generated jes class 
+we need to add the fallowing jar files to the class path
+
+-->servlet-api.jar
+-->jsp-api.jar
+-->el-api.jar
+-->jasper.jar
+-->catalina.jar
+-->all these jar files are available in <tomcat-home>\lib 
+folder
+
+list of jsp tags belongs to various catogiries
+---------------------------------
+scripting tags
+--------------
+(to write javacode in a jsp page)
+1)scriptlet(<%..........%>
+2)declaration(<%!...........%>
+3)expression(<%=..........%>
+
+Directive tags
+-----------
+1)page directive(<%@page attributes %>
+2)include directive(<%@include attributes %>
+3)taglib directive(<%@taglib attributes %>
+
+jsp standard action tags
+------------------
+1)<jsp:forward>
+2)<jsp:include>
+3)<jsp:useBean>
+4)<jsp:setProperty>
+5)<jsp:getProperty>
+6)<jsp:param>
+7)<jsp:plugin>
+8)<jsp:fallback>
+
+all the 9 implicit objects of jsp
+-----------------------
+request->javax.servlet.http.HttpServletRequest(i)->request scope
+response->javax.servlet.http.HttpServletResponse(i)
+out->javax.servlet.JspWriter(AC)
+session->javax.servlet.http.HttpSession(i)->session scope
+page->java.lang.Object(c)->page scope
+pageContext->javax.servlet.jsp.PageContext(AC)->page scope
+application->javax.servlet.ServletContext(i)->webapplicaton scope
+config->javax.servlet.ServletConfig(i)
+exception->java.lang.Throwable(c)->page scope
+
+
+1)scriptlet
+---------
+<%
+int x=10;
+int y=20;
+z=x+y;
+out.println("result is "+c);
+%>
+
+-->all implicit objects are the local variables of 
+the _jspService() method
+<%
+out.println("browser name is"+request.getHeader("user-agent"));
+%>
+-->we can use scriptlet to call the java methods but
+we cant use the scriptlet to define the java methods 
+because java does not support nested methods defination
+
+xml syntax for scriptlet
+-----------------
+<jsp:scriptlet>
+---
+---
+</jsp:scriptlet>
+
+2)declaration tag
+-------------
+syntax
+-----
+<%!
+declaration of variables
+defination of userdefined methods
+%>
+
+-->variables placed in declaration tag will become 
+member variables of JES class
+<%!
+int a=10;
+static int b=20;
+%>
+<b>welcome to jsp</b>
+-->scriptlet tag variables become local variables of 
+_jspService() method in JES class where as declaration tag
+varibles become member variables of JES class
+
+-->if declaration tag varibles and scriptlet tag varibles 
+are having same name then to differentiate then use 'this'
+keyword or 'page' implicit object in scriptlet
+
+example?
+
+expression tag
+-----------
+<%=statements %>
+<%
+int a=10;
+int b=20;
+%>
+a value is:<%=a %>
+b value is:<%=b %>
+sum is:<%=a+b %>
+
+-->_jspService() method of jsp equalent servlet 
+-->we can use expression tag to call both predefined
+and userdefined methods
+<%! public int sum(int x,int y)
+	{
+		return x+y;
+	}
+%>
+sum is:<%=sum(10,20) %>
+<br>
+pi value is:<%=Math.PI %>
+
+jsp comments
+----------
+<%--
+-----
+-----
+-----
+--%>
+html comments
+-----------
+<!--
+---
+---
+-->
+
+Directives in jsp
+------------
+1)include directive
+2)page directive
+3)taglib directive
+
+I)include directive
+------------
+->this directive tag is used to include the source code 
+of a destination jsp page into a source page.
+->after including the sourcecode then a container 
+generates a servlet for the source jsp page.
+->this type of including is also called static or compiletime
+including
+->this include directive has only one attribute called file
+
+program:-
+II)page directives
+-------------
+1)import
+-------
+->this directive is used to give a direction about
+same important information to be applied at translation
+time.
+->for example about session management,exceptionhandelling
+threadsafe(or)importing the packages etc..
+ex:
+<%@page import="java.util.*"%>
+<%@page import="java.io.*,java.sql.*"%>
+2)session
+--------
+->this attribute is used to either enable or disable 
+session tracking in a jsp page
+->the default value of this attribute is "true"
+->if session="false" then session tracking of jsp will
+be disabled
+->if sessiontracking is disabled then an implicit object
+called session is not allowed to use in jsp page
+ <%@page session="false" %>
+
+3)isThreadSafe
+------------
+->this attribute is used to inform a container about
+a single or multiple threads are allowed to access a 
+jsp page simultaniosly or concurrently
+->the default value of this attribute is "true"
+->if isThreadSafe is "true" then multiple threads
+are allowed to access a jsp page concurrently by 
+the container
+
+4)errorPage
+---------
+this attribute is used to inform the container about 
+to what page a control should be jumped,if an exception
+occured in a jsp page
+
+<%@page errorPage="error.jsp" %>
+
+5)isErrorPage
+-----------
+->this attribute is used to make a jsp page as error page
+->to make jsp page as an error page ,the default value 
+of this attribute is "false"
+->if isErrorPage="false" then the implicit object exception
+is not allowed in that page
+->if isErrorPage="true" then implicit object exception
+is allowed in that page
+->to make error.jsp as error page then we should write
+<%@page isErrorPage="true"%> in that jsp page
+
+6)contentType
+-----------
+MIME(Multipurpose Internet Mail Extention)
+->this attribute is used to set MIME type of the response
+->In a jsp page ,we can set MIME type in two ways
+<%page contentType="text/html"%>
+(or)
+<%
+response.setContentType("text/html");
+
+response.setContentType("text/xml");
+response.setContentType("application/msword");
+response.setContentType("application/vnd.ms-excel");
+
+
+7)buffer
+-------
+->in jsp an implicit object out is used to write the 
+response content into response object
+->out is an object of javax.servlet.jsp.JspWriter
+->the out object,maintains a buffer/cache to store
+response content.later a flush operation is applied to
+transfer the content at a time from buffer to the 
+response object
+->the default size of buffer is 8kb
+->if buffer is removed then out object will directly
+writes the response content into response object
+for example
+---------
+<%@page buffer="4kb"%>
+<%@page buffer="none"%>
+q)what is the diff bw a PrintWriter class and a 
+JspWriter class?
+->JspWriter class object maintains buffer(cache) but
+PrintWriter class object doesn't maintains buffer
+JspWriter=PrintWriter+buffer
+
+8)autoFlush
+---------
+->this attribute is used to either enable or disable
+autoflush mode 
+->the default value is true.it means enabled
+->if autoFlush="false" then a programmer has to
+manually call out.flush() method to flush the buffer
+
+9)extends
+--------
+->this attribute is used to inform a container that
+extend the internal servlet class of a jsp page from 
+a programmer provided class
+->at translation time a container extends the internal
+servlet from a server provided base class
+->this base class will be different from one server
+to another server
+->to write a programmer class in extends attribute 
+the programmer has to create that class by extendng 
+httpservlet and implented from HttpJspPage interface
+
+ex:
+<%@page extends="MyClass"%>
+
+10)language
+----------
+->this attribute is used to provide the 
+language code used in a jsp page 
+->the default value and only one pssible value 
+for this attribute is "java"
+<%@page language="java"%>
+
+11)info
+------
+->this attribute is used to write a page level comments 
+in a jsp page
+->if we add info attribute then at translation time 
+a container will add getServletInfo() method to the
+internalservlet class
+->if we want to read these info comment in a jsp code
+we can call getServletInfo()
+ex:
+<%@page info="This is first batch"%>
+<%
+String str=getServletInfo();
+%>
+12)isELIgnored
+------------
+->this attribute is used to enable or disable 
+expression language in a jsp page
+->the default value of this attribute is true it means 
+el is disabled
+attrbute name     -      default value
+---------------------------
+import-no
+session-true
+isThreadSafe-true
+errorPage-no
+isErrorPage-no
+contentType-text/html
+buffer-8kb
+autoFlush-true
+extends-no
+language-java
+info-no
+isElIgnored-true
+
+26-03-14
+---------
+Standard actions in jsp
+-----------------
+->at the time of constructing jsp pages in a project,
+multiple jsp pages contains the same common 
+operations
+->insted of writing javacode for those common 
+operations jsp technology intoduced a set of 
+tags for the common operations
+->the set of tags given for common operations 
+are called StandardActions
+->the list of 8 standard actions are
+
+1)<jsp:forward>
+2)<jsp:include>
+3)<jsp:useBean>
+4)<jsp:setProperty>
+5)<jsp:getProperty>
+6)<jsp:params>
+7)<jsp:plugin>
+8)<jsp:fallback>
+
+1)<jsp:forward>
+------------
+->this action tag is used to forward a request 
+from one jsp to another
+->this action tag has only one attribute called "page"
+->if we want to forward a request from a.jsp to b.jsp
+then in a.jsp we use the fallowing tag
+
+<jsp:forward page="b.jsp"/>
+->this <jsp:forward> tag is equal to forward() of 
+RequestDispatcher when a request is forwarded 
+from a.jsp to b.jsp along with that request ,
+automatically the request parameters are transfered
+->if we want to transfer additional parameters 
+then we need <jsp:param> tag under <jsp:forward>
+ex)
+<jsp:forward page="b.jsp">
+	<jsp:param name="email" value="a@b.com"/>
+</jsp:forward>
+note:
+----
+-><jsp:param> tag cant't be directly used .
+It must be used under some other action tags
+->if we use <jsp:param> tag for more than once then we
+should not write <jsp:params> tag.it is only allowed
+in<jsp:plugin> tag.
+->by using this standard action tag,it is possible to 
+communicate with jsp or servlet or html
+
+<jsp:forward page="b.jsp"/>
+<jsp:forward page="srv1"/>
+<jsp:forward page="result.html"/>
+
+program
+-------
+
+2)<jsp:include>
+------------
+->this action tag is used to include the response 
+of one jsp to another jsp page 
+->in jsp we have 2 types of includes
+1)include directive
+2)include action
+->include action is equal to include() method of 
+RequestDispatcher
+--------------
+q)the fallowing are the some differences bw 
+include directive and include action
+include directive
+------------
+->it is compile time include
+->it is recomonded to include static include(html)
+->in include directive,internally in server one object
+will be created for source and destination combindly
+->we cant add parameters for include directive
+<%@include file="b.jsp"%>
+include action
+-------------
+->it is a runtime include
+->it is recomonded to include dynamic 
+resource(servlet,jsp)
+->in include action,seperate objects are created for 
+source and destination
+->we can add parameters  for include action
+<jsp:include page="b.jsp">
+
+program
+-------
+
+<jsp:plugin>
+----------
+->this standardaction tag is used for integrating
+a jsp with an applet
+->when a jsp wants to present the response in a 
+in a graphical format on a browser then jsp talks with 
+an applet by using this tag
+->today for graphical response on browser 
+and for report generations,we use a third party
+provided tool called "JasperReports" 
+-><jsp:fallback> can be used under 
+<jsp:plugin> tag for writing alternative 
+messages to be displayed on a browserwindow ,
+if jsp to an applet connectivity fails.
+-><jsp:params>&<jsp:param> tags are used under
+<jsp:plugin> tag for passing parameter from a 
+jsp to an applet
+
+-><jsp:params> tag is mandatory for a single
+parameter or for multiple parameters
+->at the time of writing subtags under <jsp:plugin>
+tag the order of tags should be <jsp:params>
+fallowed by <jsp:fallback>
+
+<jsp:useBean>
+-----------
+in a webapplication,if some bussiness logic is 
+required in multiple jsp pages then to make that 
+bussiness logic as reusable
+it will seperated from jsp pages to a java class.
+this java class is called a bean class
+->a bean is nothing but it is a reusable software 
+component
+->with jsp to javabean communication ,we can
+seperate the bussiness logic and presentation logic
+->with seperation one developer can concentrate
+on jsp presentation and another can develop
+bussiness logic.it means division of work is possible
+Q)what is java bean
+->a java class fallows the fallowing priniples
+1)class must be public
+2)class must contain public 0 argument constructor
+3)class should not extend or implement any framework 
+or technology related class or interface
+Q)what is pojo class
+->a pojo class does not binded to any technologyor framework
+note
+---
+every javabean is a pojoclass but every pojo is not 
+a javabean
+
+
+<jsp:setProperty>
+-------------
+->this action tag is used to set the valuesto the javabean
+class properties by calling setter methods
+-><jsp:setProperty> tag must be used inside of <jsp:useBean> tag
+->the value of id attribute of <jsp:useBean> 
+tag and the value 
+of name attribute of <jsp:setProperty> should be same
+
+login.jsp
+------
+<jsp:useBean id="obj1" class="pack1.LoginBean">
+	<jsp:setProperty name="obj1" property="uname" value="nani"/>
+	<jsp:setProperty name="obj1" property="pwd" value="nani"/>
+</jsp:useBean>
+
+->the fallowing are the 4 attributes of <jsp:setProperty> tag
+1)name
+2)property
+3)param
+4)value
+
+2)<jsp:getProperty>
+---------------
+this tag is used to read the value of a bean class 
+property by calling getter method of the property
+->this tag has only two attributes name&property
+->this tag should be used at outside of 
+<jsp:useBean> tag
+->we can't write property="*" in <jsp:getProperty> tag
+<jsp:getProperty name="obj1" 
+ property="uanme"/>
+<jsp:getProperty name="obj1" property="pwd"/>
+
+program
+------
+->login.html
+->login.jsp
+->LoginBean.java
+
+Expression Language
+===============
+-in jsp ,standard actions and custom tags reduces
+javacode from a jsp page
+-expression language is also given to reduce the
+javacode from a jsp page in some areas
+-using expression language,we can reduce the
+javacode in the fallowing areas
+1)reading the request parameters,reading cookies,
+reading attributes,accessing bean bussiness methods 
+->expression language uses sysntax ${expression}
+->for example to read a request parameter uname,
+javacode:String str=request.getParameter("uname");
+EL: ${param:uname}
+->for example ,to read an attribute 'k1' from 
+a request scopse,
+javacode:Object o=request.getAttribute("k1");
+EL: ${requestScope.k1}
+
+implicit objects of EL
+----------------
+implicit objects of jsp and implicit objects of el 
+are different .Both are having one common 
+object called 'pageContext'
+1)param
+2)paramValues
+3)pageScope
+4)requestScope
+5)sessionScope
+6)applicationScope
+7)cookie
+8)pageContext
+9)header
+10)headerValues etc..
+
+note:
+----
+1)in EL,null value will be replaced with whitespace
+2)by default a container doesn't evaluate expression language
+because el is ignored in a jsp page
+3)to enable el by the container ,we should make 
+isELIgnored="false" in a jsp page
+<%@page isELIgnored="false"%>
+
+JSTL(Jsp Standard Tag Library)
+====
+->to reduce javacode from a jsp we have standard actions,
+customtags and expression language
+->eventhough these many tags r given but still the javacode 
+is not completely reduced from a jsp page
+->these JSTL tags added from jsp 1.2 onwords.
+->the diffrence bw a jsp tag and jstl tag is for jsp
+tags the implementation given by vendor
+but in jstl, a tag with implementation is given
+by SunMs
+->these jstl tags are devided into 5 catogiries 
+1)core tags
+2)sql tags
+3)xml tags
+4)function tags
+5)formatting tags
+
+core tags
+-------
+->these tags are given to reduce the javacode in
+the fallowing areas
+
+1)conditional statements
+2)looping statements
+3)StringTokenizer
+4)redirection
+5)attributes..etc
+->to use coretags in a jsp page we should 
+import its taglib uri into a jsp page 
+->in jstl uri of each categiry of tags is fixed and
+given by SunMs
+->the fallowing taglib directive should be added
+to a jsp page to use coretags
+<%taglib uri="http://java.sun.com/jstl/core" 
+prefix="c"%>
+
+1)<c:set>
+-------
+->this tag is a replacement for pageContext.setAttribute()
+statement 
+->the attributes of this tag are var,value and scope 
+->the default value of this scope is page
+a)<c:set var="k1" value="java"/>
+b)<c:set var="k2" value="jsp" scope="session"/>
+
+2)<c:out>
+--------
+->this is a replacement for out.println("-");
+statement 
+->this is an optional tag
+<c:out value="welcome"/>
+<c:out value="${k2}"/>
+
+3)<c:if>
+-------
+->this tag is the replacement for 'if' condition
+->the attribute to write the condition is 'test'
+<c:if test="${k1 eq 'java'}">
+<c:out value="ok"/>
+</c:if>
+note:<c:else> and <c:elseif> tags are not given
+
+4)<c:choose>,<c:when>and <c:otherwise>
+-------------------------------
+->this tag is the replacement for switch case
+statement
+->each case is added with <c:when> and 
+default is added with <c:otherwise>
+
+<c:choose>
+	<c:when test="${k5 lt 100}">
+	------
+	</c:when>
+	<c:when test="${k5 eq 100}">
+	-----
+	</c:when>
+	<c:otherwise>
+	--
+	--
+	</c:otherwise>
+</c:choose>
+->if we want to implement if else rule then
+<c:choose>
+	<c:when test="${k5 eq 100}">
+	---
+	---
+	</c:when>
+	<c:otherwise>
+	---
+	---
+	</c:otherwise>
+</c:choose>
+
+5)<c:forEach>
+----------
+->this tag is a replacement for forloop in java
+->this tag can be used like numarical and 
+collection based for loops 
+->collection based for loop also called foreach loop
+ex:
+int a[]={1,2,3,4,5}
+<c:forEach var="i" begin="1" end="5">
+	<c:out value="${i}"/>
+</c:forEach>
+
+6)<c:forTokens>
+------------
+->this tag is a replacement for StringTokenizer of java
+ex:
+<c:set var="str" value="this is our team"/>
+<c:forTokens var="k" items="${str}" delims=" ">
+	<c:out value="${k}"/>
+</c:forTokens>
+7)<c:redirect>
+-----------
+->this tag is a replacement for 
+response.sendRedirect() statement 
+->attribute of this tag is url
+->the possible values to url attributes are
+1)url-pattern
+2)uri
+3)absolute url
+->url-pattern is used if the destination is in same 
+web-application
+->uri is used if the destination is in different webapplication
+of same server
+->absolute url is used if destination is in different server
+
+8)<c:import>
+----------
+->this tag is given to import an xml file into a jsp page 
+<c:import url="books.xml"/>
+
+jar files of jstl
+-----------
+->by default a webcontainer of a server doesn't execute jstl
+tags because jstl tags are unknown to the container
+->to support jstl by a container we need to add the fallowing
+two jar files to the lib folder of server
+
+1)javax.servlet.jsp.jstl-version.jar
+2)javax.servlet.jsp.jstl-api-version.jar
+
+->for tomcat server,add the above 2 jar files to 
+tomcat 7.0/lib folder of server
+1)javax.servlet.jsp.jstl-version.jar
+2)javax.servlet.jsp.jstl-api-version.jar
+->for tomcat server,add the above 2 jar files to 
+Tomcat 7.0\lib folder
+
+sql tags
+------
+->these jstl tags r used to reduce jdbc code from
+a jsp page
+->the sql tags are less used ,because in a realtime 
+applications a jsp page directly does n't 
+communicate with a databse
+
+->to use sql tags in jsp we should import its
+taglib uri into jsp page
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+->the sql tags are 
+1)<sql:setDataSource> ->to set connection properties
+2)<sql:update>->to perform non-select operation 
+3)<sql:query>->to perform select operation
+ 
