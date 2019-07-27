@@ -1,3 +1,3 @@
 
 
-<a href="getemps">getEmps</a>
+<jsp:forward page="empsrv"></jsp:forward>

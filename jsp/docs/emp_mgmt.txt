@@ -1,0 +1,8 @@
+create sequence emp_data_seq start with 1 increment by 11;
+
+  CREATE TABLE "SYSTEM"."EMP_DATA" 
+   (	"EMP_ID" NUMBER(10,0), 
+	"EMP_NAME" VARCHAR2(20 BYTE), 
+	"SAL" NUMBER(10,4), 
+	"HIREDATE" DATE
+   )

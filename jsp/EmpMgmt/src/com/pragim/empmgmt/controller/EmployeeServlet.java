@@ -14,59 +14,63 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pragim.empmgmt.dao.EmployeeDAOImpl;
 import com.pragim.empmgmt.model.Employee;
 import com.pragim.empmgmt.utility.ConnectionUtility;
 
 /**
  * Servlet implementation class EmployeeServlet
  */
-@WebServlet("/getemps")
+@WebServlet("/empsrv")
 public class EmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EmployeeServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public EmployeeServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		String id = request.getParameter("empid");
+		String action = request.getParameter("action");
 		
+		
+		String ename = request.getParameter("empname");
+		String sal = request.getParameter("sal");
+		String doj = request.getParameter("doj");
+
 		try {
-			Connection conn = ConnectionUtility.getConnectionFromDB();
-		
-			PreparedStatement pstmt = conn.prepareStatement("select * from emp_data");
-			ResultSet rs = pstmt.executeQuery();
-			
-			
-			List<Employee> empList = new ArrayList<Employee>();
-			while (rs.next()) {
-				Employee e = new Employee();
-				e.setEmpId(rs.getInt(1));
-				e.setEmpName(rs.getString(2));
-				e.setSal(rs.getInt(3));
-				e.setHireDate(rs.getDate(4));
-				empList.add(e);
+
+			EmployeeDAOImpl obj = new EmployeeDAOImpl();
+			if ("delete".equalsIgnoreCase(action)) {
+
+				String message = obj.deleteEmpById(Integer.parseInt(id));
+				request.setAttribute("message", message);
+			}else if("store".equalsIgnoreCase(action)) {
+				String message = obj.saveEmployeeData(ename, sal, doj);
+				request.setAttribute("message", message);
 			}
-			
-			
-			request.setAttribute("elist", empList);
-			
+
+			List<Employee> employeeList = obj.getEmployeeList();
+			request.setAttribute("elist", employeeList);
+
 			RequestDispatcher rd = request.getRequestDispatcher("displayEmp.jsp");
 			rd.forward(request, response);
-			//convert rs into list
+			// convert rs into list
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 	}
 
 }
