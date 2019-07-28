@@ -16,6 +16,7 @@ $(document).ready( function() {
 
 <%
 
+Employee empObj = (Employee)request.getAttribute("empInfo");
 	String msg = (String)request.getAttribute("message");
 	if(msg!=null){	
 %>
@@ -26,11 +27,35 @@ $(document).ready( function() {
 
 <form action="empsrv">
 
+<%
+	if(empObj!=null){
+%>
 	<div>
-
+		<h2>Update Form</h2>
+		<input type="hidden" name="empid" value=<%=empObj.getEmpId() %>>
 	<div>
 		<span>EmpName</span>
-		<div><input type="text" name="empname"/></div>
+		<div><input type="text" name="empname" value=<%=empObj.getEmpName() %>></div>
+	</div>
+	<div>
+		<span>Sal</span>
+		<div><input type="number" name="sal" value=<%=empObj.getSal() %>></div>
+	</div>
+	<div>
+		<span>DOJ</span>
+		<div><input type="date" name="doj" value=<%=empObj.getHireDate() %>></div>
+	</div>
+	<div>
+		<div><input type="submit" name="action" value="update"/></div>
+	</div>
+	</div>
+<%}else{
+	%>
+	<div>
+		<h2>Add Form</h2>
+	<div>
+		<span>EmpName</span>
+		<div><input type="text" name="empname" /></div>
 	</div>
 	<div>
 		<span>Sal</span>
@@ -43,9 +68,11 @@ $(document).ready( function() {
 	<div>
 		<div><input type="submit" name="action" value="store"/></div>
 	</div>
+	</div>
+	
+<%} %>
 
 
-</div>
 
 </form>
 	
@@ -66,7 +93,7 @@ $(document).ready( function() {
 		<td><%=emp.getEmpName() %></td>
 		<td><%=emp.getSal() %></td>
 		<td><%=emp.getHireDate() %></td>
-		<td><a href="empsrv?empid=<%=emp.getEmpId() %>" class="glyphicon glyphicon-edit"></a></td>
+		<td><a href="empsrv?empid=<%=emp.getEmpId() %>&action=edit" class="glyphicon glyphicon-edit"></a></td>
 		<td><a href="empsrv?empid=<%=emp.getEmpId() %>&action=delete"  class="glyphicon glyphicon-trash"></a></td>
 	</tr>
 	

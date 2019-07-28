@@ -40,7 +40,8 @@ public class EmployeeServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		int empId = 0;
+		double convSal=0;
 		String id = request.getParameter("empid");
 		String action = request.getParameter("action");
 		
@@ -48,17 +49,29 @@ public class EmployeeServlet extends HttpServlet {
 		String ename = request.getParameter("empname");
 		String sal = request.getParameter("sal");
 		String doj = request.getParameter("doj");
-
+		
+		java.sql.Date convDate = null;
+		if(doj!=null)
+			convDate = ConnectionUtility.getSqlDateFromString(doj);
+		if(id!=null)
+			empId = Integer.parseInt(id);
+		if(sal!=null)
+			convSal = Double.parseDouble(sal);
 		try {
 
 			EmployeeDAOImpl obj = new EmployeeDAOImpl();
 			if ("delete".equalsIgnoreCase(action)) {
 
-				String message = obj.deleteEmpById(Integer.parseInt(id));
+				String message = obj.deleteEmpById(empId);
 				request.setAttribute("message", message);
 			}else if("store".equalsIgnoreCase(action)) {
 				String message = obj.saveEmployeeData(ename, sal, doj);
 				request.setAttribute("message", message);
+			}else if("edit".equalsIgnoreCase(action)) {
+				Employee empObj  = obj.getEmployeeById(empId);
+				request.setAttribute("empInfo", empObj);
+			}else if("update".equalsIgnoreCase(action)){
+				obj.updateEmployee(ename, convSal, convDate, empId);
 			}
 
 			List<Employee> employeeList = obj.getEmployeeList();
