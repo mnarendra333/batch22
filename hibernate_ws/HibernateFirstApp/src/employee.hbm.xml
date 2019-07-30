@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.pragim.hibernatefirstapp.entity.Employee" table="employee">
+	
+		<id name="empId" column="emp_id"/>
+		<property name="empName" column="emp_name" length="20"/>
+		<property name="sal" column="emp_sal"/>
+	
+	</class>
+
+
+</hibernate-mapping>
