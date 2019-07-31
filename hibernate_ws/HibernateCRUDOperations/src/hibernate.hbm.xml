@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+
+	<class name="com.pragim.hibernatecrud.model.Product" table="product_tab">
+	
+		<id name="proId" column="p_id"></id>
+		<property name="proName" column="p_name" length="20"></property>
+		<property name="price"></property>
+	</class>
+
+
+
+</hibernate-mapping>
