@@ -1,0 +1,205 @@
+cmds:
+=====
+mvn install:install-file -Dfile=D:\jars\ojdbc7.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.2.0.1 -Dpackaging=jar
+
+
+history:
+========
+D:\maven-examples\maven-batch22\MavenFirstApp>mvn compile
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< com.pragim.mavenfirstapp:MavenFirstApp >---------------
+[INFO] Building MavenFirstApp 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MavenFirstApp ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory D:\maven-examples\maven-batch22\MavenFirstApp\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ MavenFirstApp ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to D:\maven-examples\maven-batch22\MavenFirstApp\target\classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  20.157 s
+[INFO] Finished at: 2019-08-02T07:55:52+05:30
+[INFO] ------------------------------------------------------------------------
+
+D:\maven-examples\maven-batch22\MavenFirstApp>mvn package
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< com.pragim.mavenfirstapp:MavenFirstApp >---------------
+[INFO] Building MavenFirstApp 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MavenFirstApp ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory D:\maven-examples\maven-batch22\MavenFirstApp\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ MavenFirstApp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ MavenFirstApp ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory D:\maven-examples\maven-batch22\MavenFirstApp\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ MavenFirstApp ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to D:\maven-examples\maven-batch22\MavenFirstApp\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ MavenFirstApp ---
+[INFO] Surefire report directory: D:\maven-examples\maven-batch22\MavenFirstApp\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.pragim.mavenfirstapp.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ MavenFirstApp ---
+[INFO] Building jar: D:\maven-examples\maven-batch22\MavenFirstApp\target\MavenFirstApp-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.226 s
+[INFO] Finished at: 2019-08-02T07:56:42+05:30
+[INFO] ------------------------------------------------------------------------
+
+D:\maven-examples\maven-batch22\MavenFirstApp>mvn clean
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< com.pragim.mavenfirstapp:MavenFirstApp >---------------
+[INFO] Building MavenFirstApp 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ MavenFirstApp ---
+[INFO] Deleting D:\maven-examples\maven-batch22\MavenFirstApp\target
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.719 s
+[INFO] Finished at: 2019-08-02T07:57:26+05:30
+[INFO] ------------------------------------------------------------------------
+
+D:\maven-examples\maven-batch22\MavenFirstApp>mvn compile
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< com.pragim.mavenfirstapp:MavenFirstApp >---------------
+[INFO] Building MavenFirstApp 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MavenFirstApp ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory D:\maven-examples\maven-batch22\MavenFirstApp\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ MavenFirstApp ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to D:\maven-examples\maven-batch22\MavenFirstApp\target\classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.063 s
+[INFO] Finished at: 2019-08-02T07:58:16+05:30
+[INFO] ------------------------------------------------------------------------
+
+D:\maven-examples\maven-batch22\MavenFirstApp>mvn package
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< com.pragim.mavenfirstapp:MavenFirstApp >---------------
+[INFO] Building MavenFirstApp 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MavenFirstApp ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory D:\maven-examples\maven-batch22\MavenFirstApp\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ MavenFirstApp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ MavenFirstApp ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory D:\maven-examples\maven-batch22\MavenFirstApp\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ MavenFirstApp ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to D:\maven-examples\maven-batch22\MavenFirstApp\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ MavenFirstApp ---
+[INFO] Surefire report directory: D:\maven-examples\maven-batch22\MavenFirstApp\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.pragim.mavenfirstapp.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ MavenFirstApp ---
+[INFO] Building jar: D:\maven-examples\maven-batch22\MavenFirstApp\target\MavenFirstApp-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  18.023 s
+[INFO] Finished at: 2019-08-02T07:59:25+05:30
+[INFO] ------------------------------------------------------------------------
+
+D:\maven-examples\maven-batch22\MavenFirstApp>mvn install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< com.pragim.mavenfirstapp:MavenFirstApp >---------------
+[INFO] Building MavenFirstApp 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MavenFirstApp ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory D:\maven-examples\maven-batch22\MavenFirstApp\src\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ MavenFirstApp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ MavenFirstApp ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory D:\maven-examples\maven-batch22\MavenFirstApp\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ MavenFirstApp ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ MavenFirstApp ---
+[INFO] Surefire report directory: D:\maven-examples\maven-batch22\MavenFirstApp\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.pragim.mavenfirstapp.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ MavenFirstApp ---
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ MavenFirstApp ---
+[INFO] Installing D:\maven-examples\maven-batch22\MavenFirstApp\target\MavenFirstApp-1.0-SNAPSHOT.jar to C:\Users\sapuser\.m2\repository\com\pragim\mavenfirstapp\MavenFirstApp\1.0-SNAPSHOT\MavenFirstApp-1.0-SNAPSHOT.jar
+[INFO] Installing D:\maven-examples\maven-batch22\MavenFirstApp\pom.xml to C:\Users\sapuser\.m2\repository\com\pragim\mavenfirstapp\MavenFirstApp\1.0-SNAPSHOT\MavenFirstApp-1.0-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.895 s
+[INFO] Finished at: 2019-08-02T08:02:24+05:30
+[INFO] ------------------------------------------------------------------------
