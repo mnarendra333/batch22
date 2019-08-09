@@ -19,12 +19,20 @@ public class Client {
 		
 		
 		College obj2 = new College();
+		obj2.setName("NEWHorizon");
 		obj2.setAddress("hyd");
 		
 		Transaction tx = session.beginTransaction();
 		session.save(obj2);
 		tx.commit();
 		System.out.println("saved!!!");
+		
+		closeSession(sessionFactory,session);
+	}
+
+	private static void closeSession(SessionFactory sessionFactory, Session session) {
+		session.close();
+		sessionFactory.close();
 	}
 
 }
