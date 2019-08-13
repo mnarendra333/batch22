@@ -9,6 +9,11 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Customer {
+	@Override
+	public String toString() {
+		return "Customer [custId=" + custId + ", custName=" + custName + ", address=" + address + "]";
+	}
+
 	@Id
 	@Column
 	private int custId;

@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -16,6 +17,7 @@ public class Vendor {
 
 	@Id
 	@Column
+	@GeneratedValue
 	private int venId;
 
 	@Column(length = 20)
@@ -23,7 +25,7 @@ public class Vendor {
 	@Column(length = 30)
 	private String address;
 
-	@OneToMany(cascade=CascadeType.ALL,targetEntity=Customer.class)
+	@OneToMany(cascade=CascadeType.ALL,targetEntity=Customer.class,orphanRemoval=true)
 	@JoinColumn(name="vendor_id")
 	private Set<Customer> customerList;
 

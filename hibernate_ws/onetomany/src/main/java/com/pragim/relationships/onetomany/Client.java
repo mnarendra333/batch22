@@ -23,28 +23,26 @@ public class Client {
 		//preant
 		
 		Vendor vendor = new Vendor();
-		vendor.setVenId(1);
-		vendor.setVenName("CISCO");
-		vendor.setAddress("sanjose");
-		
-		
-		
+		vendor.setVenId(3);
+		vendor.setVenName("CTS");
+		vendor.setAddress("bangl");
+	
 		
 		//prepare customer list
 		
 		Customer c1 = new Customer();
-		c1.setCustId(1001);
-		c1.setCustName("INFY");
+		c1.setCustId(1030);
+		c1.setCustName("emc2");
 		c1.setAddress("bangl");
 		
 		Customer c2 = new Customer();
-		c2.setCustId(1002);
-		c2.setCustName("TCS");
+		c2.setCustId(1031);
+		c2.setCustName("mindtree");
 		c2.setAddress("bangl");
 		
 		Customer c3 = new Customer();
-		c3.setCustId(1003);
-		c3.setCustName("HCL");
+		c3.setCustId(1032);
+		c3.setCustName("redhat");
 		c3.setAddress("bangl");
 		
 		//create collection to hold many customers
@@ -59,6 +57,9 @@ public class Client {
 		//save the parent
 		session.save(vendor);
 		session.beginTransaction().commit();
+		
+		session.close();
+		factory.close();
 		
 	}
 
