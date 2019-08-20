@@ -33,17 +33,14 @@ public class Client {
 		Customer c1 = new Customer();
 		c1.setCustId(1030);
 		c1.setCustName("emc2");
-		c1.setAddress("bangl");
 		
 		Customer c2 = new Customer();
 		c2.setCustId(1031);
 		c2.setCustName("mindtree");
-		c2.setAddress("bangl");
 		
 		Customer c3 = new Customer();
 		c3.setCustId(1032);
 		c3.setCustName("redhat");
-		c3.setAddress("bangl");
 		
 		//create collection to hold many customers
 		Set<Customer> custList = new HashSet<Customer>();

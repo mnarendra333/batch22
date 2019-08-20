@@ -38,8 +38,10 @@ public class UpdateCustomerClient {
 		  while(iterator.hasNext()) {
 			  
 			  Customer cust = iterator.next();
-			  if("Yahoo".equalsIgnoreCase(cust.getCustName()))
-				  cust.setAddress("mumbai");
+			  if("Yahoo".equalsIgnoreCase(cust.getCustName())) {
+				  // update other prop
+			  }
+				 // cust.setAddress("mumbai");
 			  
 		  }
 		  

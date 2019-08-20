@@ -1,9 +1,12 @@
 package com.pragim.relationships.onetomany.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,8 +24,9 @@ public class Customer {
 	@Column(length=20)
 	private String custName;
 	
-	@Column(length=30)
-	private String address;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="cust_addr_fk")
+	private Address address;
 
 	public int getCustId() {
 		return custId;
@@ -40,12 +44,14 @@ public class Customer {
 		this.custName = custName;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	
 
 }
