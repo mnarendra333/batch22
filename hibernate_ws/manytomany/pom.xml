@@ -32,6 +32,13 @@
 			<artifactId>ojdbc7</artifactId>
 			<version>12.2.0.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>4.3.9.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

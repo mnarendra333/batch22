@@ -22,6 +22,7 @@
 		<!-- mapping props -->
 		<mapping class="com.pragim.relationships.onetomany.entity.Vendor"/>
 		<mapping class="com.pragim.relationships.onetomany.entity.Customer"/>
+		<mapping class="com.pragim.relationships.onetomany.entity.Address"/>
 
 	</session-factory>
 

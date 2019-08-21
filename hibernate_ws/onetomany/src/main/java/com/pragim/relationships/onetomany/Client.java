@@ -23,24 +23,24 @@ public class Client {
 		//preant
 		
 		Vendor vendor = new Vendor();
-		vendor.setVenId(3);
-		vendor.setVenName("CTS");
+		vendor.setVenId(5);
+		vendor.setVenName("CISCO");
 		vendor.setAddress("bangl");
 	
 		
 		//prepare customer list
 		
 		Customer c1 = new Customer();
-		c1.setCustId(1030);
-		c1.setCustName("emc2");
+		c1.setCustId(1050);
+		c1.setCustName("ABC");
 		
 		Customer c2 = new Customer();
-		c2.setCustId(1031);
-		c2.setCustName("mindtree");
+		c2.setCustId(1051);
+		c2.setCustName("XYZ");
 		
 		Customer c3 = new Customer();
-		c3.setCustId(1032);
-		c3.setCustName("redhat");
+		c3.setCustId(1052);
+		c3.setCustName("HP");
 		
 		//create collection to hold many customers
 		Set<Customer> custList = new HashSet<Customer>();

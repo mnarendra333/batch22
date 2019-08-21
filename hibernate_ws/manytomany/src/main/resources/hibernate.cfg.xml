@@ -16,12 +16,19 @@
 
 		<!-- hinernate props -->
 		<property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.show_sql">true</property>
-		
+
+		<property name="hibernate.cache.use_query_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">
+		org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<property name="hibernate.cache.use_query_cache">true</property>
+
 		<!-- mapping props -->
-		<mapping class="com.pragim.relationships.manytomany.entity.Product"/>
-		<mapping class="com.pragim.relationships.manytomany.entity.Seller"/>
+		<mapping
+			class="com.pragim.relationships.manytomany.entity.Product" />
+		<mapping
+			class="com.pragim.relationships.manytomany.entity.Seller" />
 
 	</session-factory>
 

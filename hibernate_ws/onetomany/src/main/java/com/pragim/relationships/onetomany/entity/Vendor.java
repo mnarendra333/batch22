@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table
 public class Vendor {
@@ -27,6 +30,7 @@ public class Vendor {
 
 	@OneToMany(cascade=CascadeType.ALL,targetEntity=Customer.class,orphanRemoval=true)
 	@JoinColumn(name="vendor_id")
+	@Fetch(value=FetchMode.SUBSELECT)
 	private Set<Customer> customerList;
 
 	public int getVenId() {
