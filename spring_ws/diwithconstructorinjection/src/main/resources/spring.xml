@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+      
+      
+      <bean id="id1" class="com.pragim.diwithconstructorinjection.model.Person">
+				<constructor-arg index="0">
+					<ref bean="is2"/>
+				</constructor-arg>      	
+      </bean> 
+      
+      
+      <bean id="is1" class="com.pragim.diwithconstructorinjection.model.PragimTech"></bean>
+      <bean id="is2" class="com.pragim.diwithconstructorinjection.model.VisionTech"></bean> 
+        
+</beans>
