@@ -49,6 +49,13 @@
 			<artifactId>ojdbc7</artifactId>
 			<version>12.2.0.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>phonebookapp</finalName>

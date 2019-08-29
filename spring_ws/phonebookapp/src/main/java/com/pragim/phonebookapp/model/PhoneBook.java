@@ -2,9 +2,18 @@ package com.pragim.phonebookapp.model;
 
 public class PhoneBook {
 
+	private int id;
 	private String name;
 	private String phoneNo;
 	private String provider;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -35,6 +44,4 @@ public class PhoneBook {
 		return "PhoneBook [name=" + name + ", phoneNo=" + phoneNo + ", provider=" + provider + "]";
 	}
 
-	
-	
 }
