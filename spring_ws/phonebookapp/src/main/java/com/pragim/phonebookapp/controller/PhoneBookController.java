@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,7 @@ public class PhoneBookController {
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String displayPhoneBookPage(Model model) {
+		System.out.println(this.hashCode());
 		model.addAttribute("phonebook",new PhoneBook());
 		return "redirect:/list";
 	}
@@ -43,9 +45,10 @@ public class PhoneBookController {
 		return "redirect:/list?msg="+message;
 	}
 	
-	@RequestMapping(value="/list",method=RequestMethod.GET)
+	//@RequestMapping(value="/list",method=RequestMethod.GET)
+	@GetMapping("/list")
 	public String getContacts(Model model,HttpServletRequest request) {
-		
+		System.out.println(this.hashCode());
 		List<PhoneBook> list = template.query("select * from phonebook", new RowMapper<PhoneBook>() {
 
 			@Override
