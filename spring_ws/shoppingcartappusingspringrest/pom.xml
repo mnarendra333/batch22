@@ -8,8 +8,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>shoppingcartappusingspringrest Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	
+	 
 	<properties>
 		<spring.version>5.0.1.RELEASE</spring.version>
+		<log4j.version>1.2.17</log4j.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -72,7 +75,18 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+	<!-- 	<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>jms</artifactId>
+			<version>1.1</version>
+		</dependency> -->
 	</dependencies>
+	
 	<build>
 		<finalName>shoppingcartappusingspringrest</finalName>
 		<plugins>
@@ -86,5 +100,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
 	</build>
 </project>

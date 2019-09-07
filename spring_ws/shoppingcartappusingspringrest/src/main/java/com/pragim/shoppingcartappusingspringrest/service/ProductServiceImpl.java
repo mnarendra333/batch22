@@ -28,4 +28,26 @@ public class ProductServiceImpl implements ProductService {
 		return dao.getProductList();
 	}
 
+
+	@Override
+	public String addProduct(Product product) {
+		// TODO Auto-generated method stub
+		return dao.addProduct(product);
+	}
+
+
+	@Override
+	public String deleteProduct(String id) {
+		// TODO Auto-generated method stub
+		int pId = Integer.parseInt(id);
+		return dao.deleteProduct(pId);
+	}
+
+
+	@Override
+	public String updateProduct(Product product) {
+		// TODO Auto-generated method stub
+		return dao.updateProduct(product);
+	}
+
 }

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +25,7 @@ import com.pragim.shoppingcartappusingspringrest.service.ProductService;
 @RequestMapping("product")
 public class ProductController {
 
+	private static final Logger logger = Logger.getLogger(ProductController.class);
 	@Autowired
 	private ProductService service;
 
@@ -33,15 +35,42 @@ public class ProductController {
 
 	@GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Product> getProductList() {
-
-		return service.getProductList();
+		logger.debug("inside ProductController->getProductList");
+		List<Product> productList = service.getProductList();
+		if(productList!=null && productList.size()>0)
+			logger.info("data is "+productList);
+		return productList;
 	}
 
-	/*
-	 * @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-	 * public String addProduct(@RequestBody Product product) {
-	 * proList.add(product); return "product added successfully"; }
-	 */
+	
+	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String addProduct(@RequestBody Product product) {
+		//proList.add(product);
+		logger.info("payload coming from UI is "+product);
+		return service.addProduct(product);
+	}
+	
+	
+	@DeleteMapping(value="/delete")
+	public String deleteProduct(@RequestParam("id") String id) {
+		String message = service.deleteProduct(id);
+		logger.info(message);
+		try {
+			int res  =10/0;
+		} catch (Exception e) {
+			logger.error(e.toString());
+		}
+		return message;
+	}
+	
+	@PutMapping(value="/update")
+	public String updateProduct(@RequestBody Product product) {
+		return service.updateProduct(product);
+	}
+	
+	
+	
+	 
 
 //	@DeleteMapping(value = "/delete/{id}")
 //	public String deleteProduct(@PathVariable("id") String id) {

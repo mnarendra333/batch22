@@ -70,4 +70,12 @@ public class Product {
 		this.proType = proType;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", seller=" + seller + ", manufacturer="
+				+ manufacturer + ", proType=" + proType + "]";
+	}
+	
+	
+
 }
